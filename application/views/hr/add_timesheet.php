@@ -595,29 +595,34 @@ $searchdate =(!empty($s)?$s:$dat2);
 var csrfName = '<?php echo $this->security->get_csrf_token_name();?>';
 var csrfHash = '<?php echo $this->security->get_csrf_hash();?>';
 $(function() {
-    var start = moment().startOf('isoWeek');
-    var end = moment().endOf('isoWeek');
+    var start = moment().startOf('isoWeek'); 
+    var end = moment().endOf('isoWeek'); 
     var startOfLastWeek = moment().subtract(1, 'week').startOf('week');
-    var endOfLastWeek = moment().subtract(1, 'week').endOf('week').add(1, 'day');
+    var endOfLastWeek = moment().subtract(1, 'week').endOf('week').add(1, 'day'); 
     function cb(start, end) {
         $('#reportrange').val(start.format('DD/MM/YYYY') + ' - ' + end.format('DD/MM/YYYY'));
     }
-    var start_week = "<?php if($setting_detail[0]['start_week']) { echo $setting_detail[0]['start_week']; } else { echo "Monday"; } ?>";
-    var end_week = "<?php if($setting_detail[0]['end_week']) { echo $setting_detail[0]['end_week'];  } else { echo "Saturday"; } ?>";
+    var start_week = "<?php echo (!empty($setting_detail[0]['start_week'])) ? $setting_detail[0]['start_week'] : 'Monday'; ?>";
+    var end_week = "<?php echo (!empty($setting_detail[0]['end_week']) ? $setting_detail[0]['end_week'] : 'Friday'); ?>";
     var weeks = {'Sunday' : 0, 'Monday' : 1, 'Tuesday': 2, 'Wednesday' : 3, 'Thusday' : 4, 'Friday' : 5, 'Saturday' : 6};
     var ThisWeekStart = moment().weekday(weeks[start_week]).startOf()._d;
     var LastWeekStart = moment().subtract(1,  'week').startOf().weekday(weeks[start_week])._d;
     var BeforeLastWeekStart = moment().subtract(2,  'week').startOf().weekday(weeks[start_week])._d;
-    function diffDays(startday, endday, weekstart) {
+    
+    function diffDays(startday, endday) {
         var res = 7;
         if(startday > endday) {
-            res = (weekstart + parseInt(startday - endday));
+            if(endday == 0) {
+                res = (7 - startday);
+            } else {
+                res = (endday + parseInt(startday - endday));
+            }
         } else if(endday > startday) {
             res = parseInt(endday - startday);
         }
         return res;
     }
-    console.log(diffDays(weeks[start_week], weeks[end_week], weeks[end_week]));
+    
     $('#reportrange').daterangepicker({
     startDate: start,
     endDate: end,
