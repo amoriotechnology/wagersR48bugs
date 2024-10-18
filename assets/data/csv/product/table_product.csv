@@ -1,0 +1,2 @@
+purchase_id,tableid,product_id,product_name,bundle_no,description,thickness,supplier_block_no,supplier_slab_no,gross_width,gross_height,gross_sq_ft_1,slab_no,net_width,net_height,net_sq_ft,cost_sq_slab,sales_amt_sq_ft,sales_slab_amt,weight,origin,total
+1211736128,1,1574645266,Butterfly Beige-LOT 109,0,,0,0,0,135,80,334,34,34,34,34,358.31,34,34,34,34,358.31

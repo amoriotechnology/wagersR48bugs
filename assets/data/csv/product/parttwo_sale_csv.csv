@@ -1,0 +1,1 @@
+tableid,invoice_id,product_id,product_name,quantity,rate,description,thickness,supplier_block_no,supplier_slab_no,g_width,g_height,gross_sqft,bundle_no,n_width,n_height,net_sqft,weight,origin,cost_sqft,cost_slab,sales_price_sqft,sales_slab_price,total_price
