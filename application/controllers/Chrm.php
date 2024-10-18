@@ -5721,6 +5721,7 @@ $data2 = array(
       $i              = $start + 1;
       $edit           = "";
       $delete         = "";
+      array_multisort(array_column($items, 'month'), SORT_DESC, $items);
       foreach ($items as $item) {
           $row = [
               "table_id"      => $i,
